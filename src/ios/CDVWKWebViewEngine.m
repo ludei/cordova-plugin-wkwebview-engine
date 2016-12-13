@@ -64,6 +64,11 @@
     return self;
 }
 
+- (void)dealloc 
+{
+    [self.webView removeObserver:self forKeyPath:@"URL"];
+}
+
 - (WKWebViewConfiguration*) createConfigurationFromSettings:(NSDictionary*)settings
 {
     WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];
