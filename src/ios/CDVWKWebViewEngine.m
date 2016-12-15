@@ -66,7 +66,12 @@
 
 - (void)dealloc 
 {
-    [self.webView removeObserver:self forKeyPath:@"URL"];
+    @try {
+        [self.webView removeObserver:self forKeyPath:@"URL"];
+        
+    } @catch(id anException){
+        //do nothing, obviously it wasn't attached because an exception was thrown
+    }
 }
 
 - (WKWebViewConfiguration*) createConfigurationFromSettings:(NSDictionary*)settings
